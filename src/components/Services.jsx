@@ -1,47 +1,96 @@
-// НАПРАВЛЕНИЯ / КАРТОЧКИ УСЛУГ (SERVICES)
-// Показываем, с какими категориями задач вы работаете.
+
 export default function Services() {
   return (
     <section id="services" className="services-section">
       <div className="container">
+
+        {/* Заголовок раздела */}
         <div className="section-header">
-          <h2>Направления работы</h2>
-          <p>Выберите подходящий формат под вашу задачу</p>
+          <h2>Наши услуги</h2>
+          <p>
+            От подбора комплектующих до полной настройки
+            игрового компьютера
+          </p>
         </div>
 
         <div className="services-grid">
-          {/* Карточка 1 */}
+
+          {/* Карточка 1 — Сборка ПК */}
           <div className="service-card">
-            <div className="card-image-placeholder">[ Картинка 1 ]</div>
+            <img
+              src="/images/assembly.jpg"
+              alt="Сборка игрового компьютера"
+              className="service-image"
+            />
+
             <div className="card-body">
-              <span className="card-tag">Базовый</span>
-              <h3>Для частных клиентов</h3>
-              <p>Быстрое решение повседневных задач с гарантией и вниманием к мелочам.</p>
-              <div className="card-price">от 850 ₽ / ед.</div>
+              <span className="card-tag">Популярное</span>
+
+              <h3>Сборка игрового ПК</h3>
+
+              <p>
+                Подберём комплектующие под твой бюджет,
+                аккуратно соберём компьютер, установим
+                систему и протестируем его производительность.
+              </p>
+
+              <div className="card-price">
+                от 3 000 ₽
+              </div>
             </div>
           </div>
 
-          {/* Карточка 2 */}
+          {/* Карточка 2 — Модернизация */}
           <div className="service-card">
-            <div className="card-image-placeholder">[ Картинка 2 ]</div>
+            <img
+              src="/images/upgrade.jpg"
+              alt="Модернизация компьютера"
+              className="service-image"
+            />
+
             <div className="card-body">
-              <span className="card-tag">Бизнес</span>
-              <h3>Для коммерческих предложений</h3>
-              <p>Большие объемы, официальные закрывающие документы и гибкий график.</p>
-              <div className="card-price">от 600 ₽ / ед.</div>
+              <span className="card-tag">Апгрейд</span>
+
+              <h3>Модернизация ПК</h3>
+
+              <p>
+                Увеличим производительность твоего компьютера.
+                Заменим видеокарту, процессор, оперативную
+                память или установим быстрый SSD.
+              </p>
+
+              <div className="card-price">
+                от 1 500 ₽
+              </div>
             </div>
           </div>
 
-          {/* Карточка 3 */}
+          {/* Карточка 3 — Настройка */}
           <div className="service-card">
-            <div className="card-image-placeholder">[ Картинка 3 ]</div>
+            <img
+              src="/images/setup.jpg"
+              alt="Настройка игрового компьютера"
+              className="service-image"
+            />
+
             <div className="card-body">
-              <span className="card-tag">Эксклюзив</span>
-              <h3>Сложные и неизведанные формы</h3>
-              <p>Работа с нестандартными формами, специфическими задачами и целями.</p>
-              <div className="card-price">от 1 200 ₽ / ед.</div>
+              <span className="card-tag">Оптимизация</span>
+
+              <h3>Настройка и оптимизация</h3>
+
+              <p>
+                Установим необходимые драйверы,
+                настроим операционную систему,
+                оптимизируем производительность
+                и подготовим ПК к играм.
+              </p>
+
+              <div className="card-price">
+                от 1 000 ₽
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

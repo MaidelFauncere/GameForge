@@ -1,32 +1,49 @@
-// ПРЕИМУЩЕСТВА / ЦИФРЫ В ФАКТАХ (STATS)
-// Цифры привлекают внимание и вызывают доверие.
+{/* Преимущества магазина GameForge */}
 export default function Stats() {
   return (
     <section className="stats-section">
       <div className="container stats-grid">
-        <div className="stat-card">
-          <div className="stat-number">10+ лет</div>
-          <div className="stat-label">Опыт в индустрии</div>
-          <p className="stat-text">Реализовали более 150 нестандартных проектов.</p>
-        </div>
 
-        <div className="stat-card">
-          <div className="stat-number">3 дня</div>
-          <div className="stat-label">Скорость работы</div>
-          <p className="stat-text">Быстрый запуск без лишней бюрократии и задержек.</p>
-        </div>
-
+        {/* Качество комплектующих */}
         <div className="stat-card">
           <div className="stat-number">100%</div>
-          <div className="stat-label">Контроль качества</div>
-          <p className="stat-text">Проверенные инструменты и материалы премиум-уровня.</p>
+          <div className="stat-label">Качество комплектующих</div>
+          <p className="stat-text">
+            Используем проверенные комплектующие
+            от известных производителей.
+          </p>
         </div>
 
+        {/* Профессиональная сборка */}
         <div className="stat-card">
-          <div className="stat-number">Договор</div>
-          <div className="stat-label">Юридическая гарантия</div>
-          <p className="stat-text">Фиксируем сроки и финальную цену на бумаге.</p>
+          <div className="stat-number">Под ключ</div>
+          <div className="stat-label">Профессиональная сборка</div>
+          <p className="stat-text">
+            Собираем, настраиваем и тестируем
+            каждый компьютер перед выдачей.
+          </p>
         </div>
+
+        {/* Гарантия */}
+        <div className="stat-card">
+          <div className="stat-number">Гарантия</div>
+          <div className="stat-label">Надёжная поддержка</div>
+          <p className="stat-text">
+            Помогаем с обслуживанием компьютеров
+            и решением технических вопросов.
+          </p>
+        </div>
+
+        {/* Индивидуальный подбор */}
+        <div className="stat-card">
+          <div className="stat-number">Любой бюджет</div>
+          <div className="stat-label">Индивидуальный подбор</div>
+          <p className="stat-text">
+            Подберём оптимальную конфигурацию
+            под твои игры, задачи и бюджет.
+          </p>
+        </div>
+
       </div>
     </section>
   );

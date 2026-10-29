@@ -1,23 +1,28 @@
-// ШАПКА САЙТА (HEADER)
-// Сюда выносим логотип, навигационные ссылки и быструю кнопку.
+{/* Шапка сайта GameForge */}
 export default function Header() {
   return (
     <header className="header">
       <div className="container header-container">
-        {/* Замените на название вашей команды, проекта или вставьте тег <img> с логотипом */}
-        <div className="logo">[ Мой Проект / Лого ]</div>
 
-        {/* Ссылки с якорным переходом (#id) плавно ведут к нужным блокам ниже */}
+        {/* Логотип магазина */}
+        <a href="#" className="logo gameforge-logo">
+          <span className="logo-icon">⚡</span>
+          Game<span className="logo-accent">Forge</span>
+        </a>
+
+        {/* Навигация по сайту */}
         <nav className="nav-menu">
           <a href="#services">Услуги</a>
-          <a href="#calculator">Калькулятор</a>
-          <a href="#portfolio">Работы</a>
+          <a href="#calculator">Конфигуратор</a>
+          <a href="#portfolio">Наши сборки</a>
           <a href="#contact">Контакты</a>
         </nav>
 
-        <a href="#calculator" className="btn btn-secondary btn-sm">
-          Рассчитать
+        {/* Кнопка быстрого перехода */}
+        <a href="#calculator" className="btn btn-primary btn-sm">
+          Собрать ПК
         </a>
+
       </div>
     </header>
   );

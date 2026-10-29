@@ -1,76 +1,157 @@
+
 import { useState } from 'react';
 
-// ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР
-// Обратите внимание: вся логика формы хранится прямо здесь в useState
-// и не засоряет остальные части проекта!
+// Комплектующие и примерные цены
+const components = {
+  cpu: [
+    { name: 'AMD Ryzen 5 5600', price: 11000 },
+    { name: 'AMD Ryzen 7 7700', price: 23000 },
+    { name: 'Intel Core i5-14400F', price: 18000 }
+  ],
+  gpu: [
+    { name: 'GeForce RTX 4060', price: 33000 },
+    { name: 'GeForce RTX 4070 Super', price: 65000 },
+    { name: 'GeForce RTX 4080 Super', price: 115000 }
+  ],
+  ram: [
+    { name: '16 ГБ DDR4', price: 4500 },
+    { name: '32 ГБ DDR4', price: 8500 },
+    { name: '32 ГБ DDR5', price: 13000 }
+  ],
+  storage: [
+    { name: 'SSD 500 ГБ', price: 3500 },
+    { name: 'SSD 1 ТБ', price: 6000 },
+    { name: 'SSD 2 ТБ', price: 11000 }
+  ]
+};
+
+const BASE_PRICE = 15000;
+
 export default function Calculator() {
-  const [formData, setFormData] = useState({
-    category: 'Частный дом',
-    volume: '100',
-    address: ''
+
+  // Выбранные комплектующие
+  const [selected, setSelected] = useState({
+    cpu: 0,
+    gpu: 0,
+    ram: 0,
+    storage: 0
   });
 
+  // Изменение выбранного компонента
+  const handleChange = (category, value) => {
+    setSelected(prev => ({
+      ...prev,
+      [category]: Number(value)
+    }));
+  };
+
+  // Автоматический расчёт стоимости
+  const totalPrice =
+    components.cpu[selected.cpu].price +
+    components.gpu[selected.gpu].price +
+    components.ram[selected.ram].price +
+    components.storage[selected.storage].price +
+    BASE_PRICE;
+
+  // Форматирование цены в рублях
+  const formatPrice = (price) => {
+    return price.toLocaleString('ru-RU') + ' ₽';
+  };
+
+  // Кнопка расчёта
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Расчет запрошен!\nОбъект: ${formData.category}\nОбъем: ${formData.volume}`);
+
+    alert(
+      `Ваша сборка GameForge:\n\n` +
+      `Процессор: ${components.cpu[selected.cpu].name}\n` +
+      `Видеокарта: ${components.gpu[selected.gpu].name}\n` +
+      `ОЗУ: ${components.ram[selected.ram].name}\n` +
+      `Накопитель: ${components.storage[selected.storage].name}\n\n` +
+      `Примерная стоимость: ${formatPrice(totalPrice)}`
+    );
   };
 
   return (
     <section id="calculator" className="calculator-section">
       <div className="container calc-container">
-        {/* Левая колонка: объясняем выгоду */}
+
+        {/* Левая колонка */}
         <div className="calc-info">
-          <h2>Рассчитайте стоимость за пару кликов</h2>
+          <h2>Собери свой идеальный ПК</h2>
+
           <p>
-            Заполните предварительные параметры, чтобы система помогла сориентироваться
-            по бюджету и срокам выполнения.
+            Выбирай комплектующие под свои задачи
+            и бюджет. Наш конфигуратор автоматически
+            рассчитает примерную стоимость
+            игрового компьютера.
           </p>
+
           <ul className="feature-list">
-            <li>✔ <b>Быстро:</b> расчет без звонков и ожидания</li>
-            <li>✔ <b>Удобно:</b> все параметры перед глазами</li>
-            <li>✔ <b>Понятно:</b> никаких скрытых наценок</li>
+            <li>✔ Подбор комплектующих</li>
+            <li>✔ Мгновенный расчёт стоимости</li>
+            <li>✔ Разные варианты конфигураций</li>
+            <li>✔ Профессиональная сборка</li>
           </ul>
         </div>
 
-        {/* Правая колонка: сама интерактивная форма */}
+        {/* Правая колонка */}
         <div className="calc-card">
-          <h3>Параметры расчета</h3>
+          <h3>Конфигуратор GameForge</h3>
+
           <form onSubmit={handleSubmit} className="calc-form">
-            <div className="form-group">
-              <label>Тип объекта</label>
-              <select
-                value={formData.category}
-                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              >
-                <option value="Частный дом">Частный дом / Квартира</option>
-                <option value="Коммерция">Офис / Коммерция</option>
-                <option value="Другое">Нестандартный объект</option>
-              </select>
+
+            {/* Создание списков выбора */}
+            {Object.entries(components).map(([key, options]) => {
+
+              const labels = {
+                cpu: 'Процессор',
+                gpu: 'Видеокарта',
+                ram: 'Оперативная память',
+                storage: 'Накопитель'
+              };
+
+              return (
+                <div className="form-group" key={key}>
+                  <label htmlFor={`component-${key}`}>
+                    {labels[key]}
+                  </label>
+
+                  <select
+                    id={`component-${key}`}
+                    value={selected[key]}
+                    onChange={(e) =>
+                      handleChange(key, e.target.value)
+                    }
+                  >
+                    {options.map((option, index) => (
+                      <option key={option.name} value={index}>
+                        {option.name} — {formatPrice(option.price)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              );
+            })}
+
+            {/* Итоговая стоимость */}
+            <div className="calc-total">
+              <span>Примерная стоимость:</span>
+              <strong>{formatPrice(totalPrice)}</strong>
+              <small>
+                Включены условные 15 000 ₽ на остальные
+                компоненты и сборку. Цены демонстрационные.
+                Совместимость деталей не проверяется.
+              </small>
             </div>
 
-            <div className="form-group">
-              <label>Примерный объем (м² или количество)</label>
-              <input
-                type="number"
-                value={formData.volume}
-                onChange={(e) => setFormData({ ...formData, volume: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Адрес или город</label>
-              <input
-                type="text"
-                placeholder="ул. Примерная, 10"
-                value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              />
-            </div>
-
-            <button type="submit" className="btn btn-primary btn-block">
-              Получить расчет
+            <button
+              type="submit"
+              className="btn btn-primary btn-block"
+            >
+              Посмотреть мою сборку
             </button>
+
           </form>
         </div>
       </div>

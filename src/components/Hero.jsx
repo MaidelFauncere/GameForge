@@ -1,30 +1,50 @@
-// ПЕРВЫЙ ЭКРАН (HERO)
-// Самое важное место: за 3 секунды человек должен понять, о чем ваш сайт.
+
 export default function Hero() {
   return (
     <section className="hero-section">
-      <div className="container hero-content">
+      <div className="container hero-layout">
 
-        {/* Главный оффер: Какую задачу вы решаете? */}
-        <h1 className="hero-title">
-          Главный заголовок: Опишите суть вашей идеи одной-двумя фразами
-        </h1>
+        {/* Левая часть — текст */}
+        <div className="hero-text">
 
-        {/* 2-3 предложения с деталями */}
-        <p className="hero-description">
-          Здесь напишите кратко: чем именно вы полезны клиенту, какие фишки
-          или технологии используете и почему стоит доверять именно вам.
-        </p>
+          <span className="hero-badge">
+            GAMEFORGE — ИГРОВЫЕ КОМПЬЮТЕРЫ
+          </span>
 
-        {/* Две основные кнопки действия */}
-        <div className="hero-actions">
-          <a href="#portfolio" className="btn btn-primary">
-            Посмотреть работы
-          </a>
-          <a href="#calculator" className="btn btn-outline">
-            Узнать стоимость
-          </a>
+          <h1 className="hero-title">
+            Собери компьютер
+            <span className="hero-highlight">
+              {" "}своей мечты
+            </span>
+          </h1>
+
+          <p className="hero-description">
+            Мощные игровые ПК под любой бюджет.
+            Подберём лучшие комплектующие,
+            профессионально соберём и протестируем
+            твой компьютер.
+          </p>
+
+          <div className="hero-actions">
+            <a href="#portfolio" className="btn btn-primary">
+              Посмотреть сборки
+            </a>
+
+            <a href="#calculator" className="btn btn-outline">
+              Рассчитать стоимость
+            </a>
+          </div>
+
         </div>
+
+        {/* Правая часть — изображение ПК */}
+        <div className="hero-image">
+          <img
+            src="/images/gaming-pc.png"
+            alt="Игровой компьютер GameForge"
+          />
+        </div>
+
       </div>
     </section>
   );
